@@ -1,21 +1,36 @@
 pipeline {
-    
+
     agent any
 
-    tools {
-        maven 'maven-3.6.3'
-    }
-
     stages {
-        stage ('Check-Maven') {
+        stage ('build docker image') {
             steps {
-                sh 'mvn -version'
+                sh 'docker build . -t nginxjenkins:01'
             }
         }
 
-        stage ('Clean Maven Package') {
+        stage ('docker hub login') {
             steps {
-                sh 'mvn clean package'
+                echo  "ToDo: Logging to docker hub"
+            }
+        }
+
+        stage ('Docker push image') {
+            steps {
+                echo  "ToDo: pushing image to docker hub"
+            }
+        }
+
+        stage ('Pulling image') {
+            steps {
+                echo  "ToDo: Pulling image from Docker hub"
+            }
+        }
+
+        stage ('Docker run') {
+            steps {
+                sh 'docker run --name jenkinsnginx -d -p 8082:80 nginxjenkins:01'
+                echo  "Running the image"
             }
         }
     }
