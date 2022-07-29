@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build Docker image') {
       steps {
-        bat 'docker build . -t nginxjenkins:01'
+        bat 'docker build . -t nginxjenkins:02'
       }
     }
 
@@ -20,7 +20,7 @@ pipeline {
     }
       stage('Docker run') {
       steps {
-        bat 'docker run --name jenkinsnginx -d -p 8082:80 nginxjenkins:01'
+        bat 'docker run --name jenkinsnginx -d -p 8082:80 nginxjenkins:02'
           echo "Running the image"
       }
     }
